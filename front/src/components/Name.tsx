@@ -1,4 +1,5 @@
 import React from 'react'
+import Swal from 'sweetalert2'
 type user = {
     email: string
     password: string
@@ -17,6 +18,22 @@ type Props = {
 }
 function Name(inputData: Props) {
 
+    const checkname = (event: React.FormEvent) => {
+        event.preventDefault();
+        const name = inputData.newUser.Firstname
+        const lname = inputData.newUser.Lastname
+        if(name.length<3 || lname.length<3 ){
+            Swal.fire({
+                icon: "error",
+                title: "Please Try Again",
+                text: "Need more than 3 Charactor",
+            });
+        }
+        else{
+            inputData.setStep((x)=>x+1)
+        }
+    }
+
     return (
         <section className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <div className="flex items-center justify-center ">
@@ -25,7 +42,7 @@ function Name(inputData: Props) {
                 <h1 className="text-2xl lg:mb-10 text-center font-extrabold text-cyan-700 md:text-3xl">
                             Create a Vannessplus Account
                         </h1>
-                        <form className="space-y-4 md:space-y-6" action="#" onSubmit={()=>inputData.setStep((x)=>x+1)}>
+                        <form className="space-y-4 md:space-y-6" action="#" onSubmit={checkname}>
                             <div>
                                 <label htmlFor="firstname" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Firstname</label>
                                 <input value={inputData.newUser.Firstname} onChange={(e) => inputData.inputValue("Firstname",e.target.value)} type="text" name="firstname" id="firstname" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Firstname" required />

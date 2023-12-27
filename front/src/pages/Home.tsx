@@ -5,6 +5,7 @@ import Email from '../components/Email'
 
 
 
+
 function Home() {
     return (
         <div className='h-screen w-screen bg-slate-50 flex justify-center '>
@@ -13,7 +14,7 @@ function Home() {
                     {/* <Email /> */}
                     {/* <Name/> */}
                     {/* <BasicInfo /> */}
-
+                  
                 </div>
             </section>
             <section className='w-2/4  bg-cyan-700 md:flex items-center justify-center hidden'>
